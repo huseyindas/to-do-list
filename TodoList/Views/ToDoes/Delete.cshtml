@@ -1,0 +1,50 @@
+﻿@model TodoList.Models.ToDo
+
+@{
+    ViewBag.Title = "Sil";
+}
+
+<h3>Sil</h3>
+
+<h5>Bu maddeyi silmek istediğinize emin misiniz?</h5>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label class="control-label col-md-2">Açıklama</label>
+            @*@Html.DisplayNameFor(model => model.Description)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2">Kategori</label>
+            @*@Html.DisplayNameFor(model => model.Category)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2">Durum</label>
+            @*@Html.DisplayNameFor(model => model.IsDone)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDone)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-primary" /> |
+            @Html.ActionLink("Listeye geri dön", "Index")
+        </div>
+    }
+</div>

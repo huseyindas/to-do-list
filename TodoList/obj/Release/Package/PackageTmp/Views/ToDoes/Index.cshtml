@@ -1,0 +1,49 @@
+﻿@model TodoList.Models.ToDo
+
+@{
+    ViewBag.Title = "Listem";
+}
+
+<div id="tableDiv"></div>
+<div id="todoCreateForm">
+    @using (Ajax.BeginForm("AJAXCreate", "ToDoes", new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        UpdateTargetId = "tableDiv"
+    }))
+
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-6 col-md-2">
+                <div class="form-group">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Açıklama" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <div class="form-group">
+                        @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control", placeholder = "Kategori" } })
+                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-2 col-md-1">
+                <div class="form-group">
+                        <input type="submit" value="Ekle" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Custom_Scripts/BuildTable.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
